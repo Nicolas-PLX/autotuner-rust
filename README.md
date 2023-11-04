@@ -47,8 +47,7 @@ Nous pourrions rajouter aussi une fonctionnalité d'évaluation de la qualité d
 générées par le programme, pour ensuite amélioré notre programme à l'aide de ces évaluations.  
 
 
-## Testabilités du projet :
-
+## Testabilités du projet :  
     ### Test de cohérence :  
     
     Les paroles générées doivent être cohérentes, que ce soit au niveau de la structures,
