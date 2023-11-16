@@ -44,8 +44,34 @@ pour la génération de paroles de chansons (en plus du style de musique), comme
 de rimes, le nombre de vers, la taille des vers, le rythme. Nous pourrions éventuellement rajouter la 
 personnalisation des paroles,en fonction des préférences que l'utilisateur fournira au programme. 
 Nous pourrions rajouter aussi une fonctionnalité d'évaluation de la qualité des paroles 
-générées par le programme, pour ensuite amélioré notre programme à l'aide de ces évaluations.  
+générées par le programme, pour ensuite amélioré notre programme à l'aide de ces évaluations. 
 
+## Aspect Technique :  
+
+### Création de chaînes :  
+
+Les chaînes de Markov seront créées en analysant la structure et la séquence des mots 
+dans les paroles de chansons. Pour ce faire, nous allons diviser chaque chanson en 
+séquences de mots, et observer les transitions entre ces mots. Les transitions 
+seront utilisées pour former les probabilités de transition entre les mots, créant ainsi 
+la matrice de transition de la chaîne de Markov. 
+
+### Caractérisation de l'état de la chaîne :
+
+Chaque état de la chaîne représentera un mot spécifique, et le passé sera caractérisé 
+par la séquence des mots précédents menant à l'état actuel. Ainsi, à un moment donné, 
+l'état actuel de la chaîne serait un mot, et le passé serait la séquence de mots qui a 
+conduit à cet état. Ces informations seront utilisées pour prédire le mot suivant dans 
+génération de paroles de chansons.  
+
+### Stockage de la chaîne de Markov :
+
+La chaîne de Markov pour une langue donnée sera stockée sous la forme d'une matrice de transition. 
+Cette matrice représentera les probabilités de transition entre chaque paire de mots dans la langue spécifique.
+En utilisant des structures de données appropriées, telles que des dictionnaires ou 
+des tableaux multidimensionnels, nous pourrons accéder rapidement aux probabilités de 
+transition lors de la génération des paroles. Nous irons stocké les chaînes préalablement généré
+dans des fichiers, pour pouvoir les réutiliser ensuite.  
 
 ## Testabilités du projet :  
 
