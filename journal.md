@@ -1,2 +1,7 @@
-PENELOUX;Nicolas;nicolas.peneloux@etu.u-paris.fr;0785510074  
-SCHEINER;Ymri;ymri.scheiner@etu.u-paris.fr;07182624
+# 17/11/2023
+
+TODO
+- Sketch the main ideas behind the creation of texts for songs
+- Sketch the main ideas behind generation of text that makes sense
+- Define when two or more words "are coherent", i.e. make sense
+
