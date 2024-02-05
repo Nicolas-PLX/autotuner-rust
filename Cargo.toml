@@ -1,0 +1,12 @@
+[package]
+name = "peneloux-scheiner-plong-2023"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+
+
+[[bin]]
+name = "autotuner"
+path = "src/launcher.rs"

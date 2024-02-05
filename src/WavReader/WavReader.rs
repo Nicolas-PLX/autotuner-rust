@@ -20,6 +20,7 @@ impl Complex {
 
 
 
+
 struct WavReader { // Struct pour stocker le résultat de la lecture du fichier wav
     channels : u16,
     sample_width : u16,
@@ -30,7 +31,7 @@ struct WavReader { // Struct pour stocker le résultat de la lecture du fichier 
 
 impl WavReader {
     
-    fn newReader(file_path : &str) -> Result<WavReader, std::io::Error>{
+    pub fn new(file_path : &str) -> Result<WavReader, std::io::Error>{
         let file = File::open(file_path)?;
         let mut reader = BufReader::new(file);
 
@@ -73,15 +74,17 @@ impl WavReader {
 
 
     // Algo basique de FFT (ALgo de Cooley-Tukey)
-    fn fft(&self) -> Vec<Complex> {
+    pub fn fft(&self) -> Vec<Complex> {
         let mut spectre = Vec::with_capacity(self.samples.len());
 
-        for i in 0..self.samples.len(){
+        for k in 0..self.samples.len(){
             let mut sum = Complex::new(0.0,0.0);
-            for j in 0..self.samples.len() {
+            for n in 0..self.samples.len() {
                 let angle = -2.0 * PI * k as f64 * n as f64 / self.samples.len() as f64;
                 let c = Complex::new(angle.cos(), angle.sin());
-                sum += self.samples[n] as f64 * c;
+                let sample_as_complex = Complex::new(self.samples[n] as f64, 0.0);
+                sum.re += sample_as_complex.re * c.re - sample_as_complex.im * c.im;
+                sum.im += sample_as_complex.re * c.im + sample_as_complex.im * c.re;
             }   
             spectre.push(sum);
         }
