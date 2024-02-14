@@ -31,4 +31,23 @@ Scheiner absent (malade)
 - mentionner les tests unitaires
 - compléter la méthodologie de test pour le shifting
 - préciser le langage de programmation (C++ ?)
-- 
+
+# 8/2/2024
+
+## Fait
+
+- priorité au pitch tracking -> on essaye de créer des fichiers midi
+- FFT par Cooley-Tukey (mais à tester)
+- Algorithme
+- Affichage graphique primaire
+- Lecture fichier audio
+
+## TODO
+
+- [] algo de tracking : coder un/des algorithme/s de tracking
+- [] outillage de test
+  - [] pour FFT: comparaison avec autre implémentation, FFT inverse
+  - [] déterminer méthodologies de test pour tracking
+  - [] notion de distance entre échantillons sonores -> coder cette distance
+  - [] notion de distance entre fichiers midi -> coder cette distance
+  - [] écrire jeux de test
