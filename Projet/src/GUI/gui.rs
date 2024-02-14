@@ -14,6 +14,11 @@ struct AppState {
     current_text: String,
 }
 
+/* 
+struct audio_file_path {
+    file_path: String
+}
+*/
 
 pub fn launch() {
     let main_window = WindowDesc::new(ui_builder())
@@ -40,8 +45,8 @@ fn ui_builder() -> impl Widget<AppState> {
     start_path.push("audios");
     start_path.push("src");
     */
-    let srcfile="";
-    let targetfile="";
+    //let srcfile="";
+    //let targetfile="";
     /*
     let audio = FileSpec::new("Audio files", &["mp3","wav"]);
     let open_dialog_options = FileDialogOptions::new()
@@ -56,12 +61,12 @@ fn ui_builder() -> impl Widget<AppState> {
     */
 
     let view_switcher = ViewSwitcher::new(
-        |data: &AppState, _env| data.current_view,
+        |data: &AppState, _env| data.clone(),
         |selector, _data, _env| match selector {
-            0 => Box::new(
+            AppState{current_view:0, current_text} => Box::new(
                 Flex::column()
                     .with_flex_child(Label::new("Please select an audio file").center(), 1.0)
-                    .with_flex_child(Button::new("Import File").on_click(move |ctx, data: &mut u32, _| {
+                    .with_flex_child(Button::new("Import File").on_click(move |ctx, data: &mut AppState, _| {
                 let audio = FileSpec::new("Audio files", &["mp3","wav"]);
                 let open_dialog_options = FileDialogOptions::new()
                     .allowed_types(vec![audio])
@@ -76,35 +81,35 @@ fn ui_builder() -> impl Widget<AppState> {
             })
             .center(),
             1.0)
-            .lens(AppState::current_view)
+            //.lens(AppState::current_view)
             ),
-            1=>Box::new(
+            AppState{current_view:1, current_text}=>Box::new(
                 Flex::column()
                 .with_flex_child(Label::new("What would you like to do").center(), 1.0)
                 .with_flex_child(Flex::row()
-                                        .with_flex_child(Button::new("Pitch Track").center().on_click(|_ctx, data: &mut u32, _| {*data=2;}), 1.0)
-                                        .with_flex_child(Button::new("Pitch Shift").center().on_click(|_ctx, data: &mut u32, _| {*data=3;}), 1.0)
+                                        .with_flex_child(Button::new("Pitch Track").center().on_click(|_ctx, data: &mut AppState, _| {data.current_view=2;}), 1.0)
+                                        .with_flex_child(Button::new("Pitch Shift").center().on_click(|_ctx, data: &mut AppState, _| {data.current_view=3;}), 1.0)
                                         .with_flex_child(Button::new("AutoTune").center(), 1.0)
                                         , 1.0)
-                .lens(AppState::current_view)
+                //.lens(AppState::current_view)
             ),
-            2=>Box::new(
+            AppState{current_view:2, current_text}=>Box::new(
                 Flex::column()
                 .with_flex_child(Label::new("Pitch Tracking").center(), 1.0)
-                .with_flex_child(Button::new("Restart").center().on_click(|_ctx, data: &mut u32, _| {*data=0;}), 1.0)
-                .lens(AppState::current_view)
+                .with_flex_child(Button::new("Restart").center().on_click(|_ctx, data: &mut AppState, _| {data.current_view=0;}), 1.0)
+                //.lens(AppState::current_view)
             ),
 
-            3=>Box::new(
+            AppState{current_view:3, current_text}=>Box::new(
                 Flex::column()
                 .with_flex_child(Label::new("Pitch Shifting").center(), 1.0)
-                                        .with_flex_child(Button::new("Restart").center().on_click(|_ctx, data: &mut u32, _| {
-                                            *data=0;}), 1.0)
-                                        .with_flex_child(Button::new("Play Audio").center().on_click(|_ctx, data:  &mut u32, _| {
+                                        .with_flex_child(Button::new("Restart").center().on_click(|_ctx, data: &mut AppState, _| {
+                                            data.current_view=0;}), 1.0)
+                                        .with_flex_child(Button::new("Play Audio").center().on_click(|_ctx, data:  &mut AppState, _| {
                                                 //let current_text = data.current_text.clone();
-                                                //play_audio((data.current_text).to_string());
+                                                play_audio((data.current_text).to_string());
                                             }), 1.0)
-                .lens(AppState::current_view)
+                //.lens(AppState::current_view)
             ),
             _ => Box::new(Label::new("Unknown").center()),
         });
@@ -142,6 +147,7 @@ impl AppDelegate<AppState> for Delegate {
     ) -> Handled {
         if let Some(file_info) = cmd.get(commands::OPEN_FILE) {
             data.current_text = file_info.path().to_string_lossy().to_string();
+            //audio_file_path = &file_info.path().to_string_lossy().to_string();
             data.current_view = 1;
             /* 
             match std::fs::read(file_info.path()) {
