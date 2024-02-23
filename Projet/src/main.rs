@@ -19,6 +19,10 @@ fn main() {
         Ok(reader) => {
             let spectrum = reader.fft();
             println!("Spectre de fréquences: {:?}", spectrum);
+            let base_samples = reader.samples;
+            println!("Samples de bases : {:?}",base_samples);
+            // todo : corriger l'erreur let inverse_samples = reader.ifft();
+            println!("Inverse samples : {:?}",&inverse_samples);
         }
         Err(e) => println!("Erreur: {}", e),
     }

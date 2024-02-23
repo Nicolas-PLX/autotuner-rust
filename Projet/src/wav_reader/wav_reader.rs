@@ -51,7 +51,7 @@ pub struct WavReader { // Struct pour stocker le résultat de la lecture du fich
     channels : u16,
     sample_width : u16,
     frame_rate : u32,
-    samples : Vec<i16>,
+    pub samples : Vec<i16>,
 }
 
 
@@ -97,28 +97,13 @@ impl WavReader {
 
 
 
-
-
-    // Algo basique de FFT (ALgo de Cooley-Tukey) ancien algo qui ne marche pas
-    /*/
-    fn fft(&self) -> Vec<Complex> {
-        let mut spectre = Vec::with_capacity(self.samples.len());
-
-        for i in 0..self.samples.len(){
-            let mut sum = Complex::new(0.0,0.0);
-            for j in 0..self.samples.len() {
-                let angle = -2.0 * PI * k as f64 * n as f64 / self.samples.len() as f64;
-                let c = Complex::new(angle.cos(), angle.sin());
-                sum += self.samples[n] as f64 * c;
-            }   
-            spectre.push(sum);
-        }
-        spectre
-    }*/
-
     //Fonction pour convertir notre sample en liste de nombres complexe
     fn samples_to_complex(samples: &[i16]) -> Vec<Complex> {
         samples.iter().map(|&x| Complex::new(x as f64, 0.0)).collect()
+    }
+
+    fn complex_to_samples(output: &[Complex]) -> Vec<i16> {
+        output.iter().map(|c| c.re.round() as i16).collect()
     }
 
    
@@ -153,6 +138,23 @@ impl WavReader {
     }
 
     result
+    }
+
+
+    pub fn ifft(&self) -> Vec<i16> {
+        let complex = Self::samples_to_complex(&self.samples);
+        let n = complex.len();
+        let mut ifft = Self::fft_rec(&complex);
+    
+        // Take complex conjugate of output and scale by 1/n
+        for c in &mut ifft {
+            c.im = -c.im / (n as f64);
+            c.re = c.re / (n as f64);
+        }
+    
+        let ifft_output = Self::complex_to_samples(&ifft);
+
+        ifft_output
     }
 
     
