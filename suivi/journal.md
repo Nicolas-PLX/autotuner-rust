@@ -34,6 +34,8 @@ Scheiner absent (malade)
 
 ## 14/2/2024
 
+Schneier absent
+
 ### Fait
 
 - priorité au pitch tracking -> on essaye de créer des fichiers midi
@@ -62,6 +64,7 @@ Scheiner absent (malade)
 ### À faire
 
 - continuer objectifs donnés le 14/2
-- préparer une démo
+- préparer une démo (pour toutes les séances de suivi)
 - réviser calendrier
 - supprimer fichiers de projet obsolètes
+- regarder couverture des tests
