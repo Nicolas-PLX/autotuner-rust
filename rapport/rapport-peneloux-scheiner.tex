@@ -1,4 +1,6 @@
 \documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{calendar}
 \usepackage[utf8]{inputenc}
 
 \title{Rapport intermediaire pour Projet Long}
@@ -57,11 +59,33 @@ Il manque ainsi la partie pitch correction et l'implémentation de tests pour la
 Idéalement, nous pouvons consacrer 2 semaines sur l'implémentations des tests et les semaines restantes pour coder la partie pitch correction.
 
 
+\subsection*{Calendrier Visuel}
+
+\begin{tikzpicture}
+%Mois
+\draw[fill=yellow] (0,0) rectangle (2,0.5) node[pos=.5] {Décembre};
+\draw[fill=yellow] (2,0) rectangle (4,0.5) node[pos=.5] {Janvier};
+\draw[fill=yellow] (4,0) rectangle (6,0.5) node[pos=.5] {Février};
+\draw[fill=yellow] (6,0) rectangle (8,0.5) node[pos=.5] {Mars};
+\draw[fill=yellow] (8,0) rectangle (10,0.5) node[pos=.5] {Avril};
+
+%Tâches
+\draw[thick] (0,-0.5) rectangle (1.5, -1.5) node[pos=.5, text width=1.8cm, align=center] {Choix des algos};
+\draw[thick] (1,-2) rectangle (4, -3) node[pos=.5, text width=1.8cm, align=center] {Implémentation FFT};
+\draw[thick] (1,-3.5) rectangle (4, -4.5) node[pos=.5, text width=1.8cm, align=center] {Interface graphique};
+\draw[thick] (3.5,-0.5) rectangle (6.5, -1.5) node[pos=.5, text width=1.8cm, align=center] {Tests FFT};
+\draw[thick] (4,-2) rectangle (8, -3) node[pos=.5, text width=1.8cm, align=center] {Pitch Tracking};
+\draw[thick] (7,-3.5) rectangle (8, -4.5) node[pos=.5, text width=1cm, align=center, font=\small] {Tests PT};
+\draw[thick] (8,-0.5) rectangle (10, -1.5) node[pos=.5, text width=1.8cm, align=center] {Pitch Correction};
+
+
+\end{tikzpicture}
+
 \section*{Problèmes rencontrés}
 Nous avons d'abord mit du temps a trouver un sujet accepté, mais aussi après dans la réalisation du projet jusqu'a maintenant. Les difficultés majeures que nous avons rencontrées sont 
 \begin{itemize}
    \item l'utilisation de rust que nous avons tout les deux du apprendre sur le tas
-  \item la compréhension théorique des algorithmes et technologies que nous utilisons car c'était notre premier projet dans le domaine du traitement audi
+  \item la compréhension théorique des algorithmes et technologies que nous utilisons car c'était notre premier projet dans le domaine du traitement audio
   \item le choix des algorithmes a utiliser car en rapport avec le point précédent, les différencens peuvent être nuancées et dure a saisir sans en connaître les tenants et aboutissants
 \end{itemize}
 
