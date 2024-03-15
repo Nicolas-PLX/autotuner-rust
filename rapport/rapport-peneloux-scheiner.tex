@@ -11,28 +11,58 @@
 
 \section{Introduction}
 
-\subsection{But du Projet}
+Notre projet consiste à réaliser un auto tuner, c'est à dire un programme qui recoit en entrée un fichier audio d'une voix, et ressort en sortie une version de cette audio dont les notes sont modifié selon les désirs de l'utilisateur, sans modifier le reste de l'audio. Grossièrement, nous pouvons diviser cela en 2 : 
+\begin{itemize}
+  \item Pitch Tracking : récupérer les différentes notes de l'audio
+  \item Pitch Correction : changer les notes vers les hauteurs souhaitées
+\end{itemize}
+\par 
 
-\subsection{Métrique}
+\subsection*{Métriques}
+Pour mesurer le succès de notre projet, nous utiliserons les métriques suivantes :
+
+
+
 
 \section{Implémentation}
 
-\subsection{Réalisation du Projet}
+Nous réalisons ce projets en \textbf{Rust}, en nous appuyant sur \textbf{l'algorithme FFT (Fast Fourier transform)} pour représenter l'audio sous une forme de données pragmatiques pour notre projet, une méthode très courante pour le traitement de signal. 
+Nous utilisons également d'autres algorithmes basés sur cette technologie tel que l'algorithme PIN pour la section pitch correction.
+\par
+En terme de modules ou packages, la strudcture interne du projet est très simple avec un fichier par tâche, a utiliser dans un main.
+Nous utilisons quelques packages de Rust pour certaines tâches auxiliaires au projet tel que la création de l'interface graphique, ou la manipulation/création de fichier midi.
 
-\subsection{Logiciel Développé}
-
-\subsection{Structure du Code}
-
-\subsection{Représentation des Données}
-
-\subsection{Technologies Utilisées}
 
 \section{Jalons}
 
 \subsection{Tâches à Réaliser}
 
-\subsection{Organisation Temporelle}
+Nous avons divisé le projet dans sa globalité en 3 grosse tâches, à savoir 
+\begin{itemize}
+  \item l'implémentation de l'algorithme FFT pour permettre de transformer des fichiers audio en données utilisables
+  \item l'implémentation du pitch tracking
+  \item l'implémentation de la pitch correction
+\end{itemize}
+
+Viennent ensuite s'ajouter des tâches auxiliaires telles que la mise en place de tests, la création de l'interface graphique etc...
 
 \subsection{Tâches Terminées}
+
+Les deux première tâches parmi celles énumérées au dessus ont été réalisés, ainsi que quelques tâches auxiliaires. Des tests ont été mit en place pour la partie FFT, et l'interface utilisateur a déjà été conçue.
+
+\subsection{Organisation Temporelle}
+
+Il manque ainsi la partie pitch correction et l'implémentation de tests pour la partie pitch tracking. 
+\par
+Idéalement, nous pouvons consacrer 2 semaines sur l'implémentations des tests et les semaines restantes pour coder la partie pitch correction.
+
+
+\section*{Problèmes rencontrés}
+Nous avons d'abord mit du temps a trouver un sujet accepté, mais aussi après dans la réalisation du projet jusqu'a maintenant. Les difficultés majeures que nous avons rencontrées sont 
+\begin{itemize}
+   \item l'utilisation de rust que nous avons tout les deux du apprendre sur le tas
+  \item la compréhension théorique des algorithmes et technologies que nous utilisons car c'était notre premier projet dans le domaine du traitement audi
+  \item le choix des algorithmes a utiliser car en rapport avec le point précédent, les différencens peuvent être nuancées et dure a saisir sans en connaître les tenants et aboutissants
+\end{itemize}
 
 \end{document}
