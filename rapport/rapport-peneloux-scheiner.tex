@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{tikz}
 \usetikzlibrary{calendar}
+\usepackage{amsmath}
 \usepackage[utf8]{inputenc}
 
 \title{Rapport intermediaire pour Projet Long}
@@ -21,7 +22,25 @@ Notre projet consiste à réaliser un auto tuner, c'est à dire un programme qui
 \par 
 
 \subsection*{Métriques}
-Pour mesurer le succès de notre projet, nous utiliserons les métriques suivantes :
+Pour mesurer le succès de notre projet, nous avons choisi une métrique de succès basée sur la distance entre les signaux de sortie produits par notre algorithme et ceux produits par une 
+implémentation de référence. Plus précisément, nous définissons la mesure de succès comme suit :
+\begin{equation}
+    \operatorname{succes} = \max_{x \in \mathrm{entrees\_testees}} d(A(x), B(x))
+\end{equation}
+\par
+
+où \( \mathit{A} \) et \( \mathit{B} \) représentent respectivement notre algorithme et l'implémentation de référence, \(\textit{d}\) est une fonction de distance entre les signaux audio, et \(\mathit{entrees\_testees}\) est un tableau contenant les fichiers audio d'entrée à tester.
+\par
+Nous définissons également un seuil maximal de distance autorisée entre les signaux de sortie de \(\textit{A}\) et \(\textit{B}\), noté \(\textit{seuil\_max}\). Si la mesure de succès est inférieur
+à ce seuil, nous considérons que notre projet est réussi.
+
+Pour calculer la mesure de succès, nous parcourons tous les signaux audio d'entrée dans le \( \textit{entrees\_testees} \). Pour chaque entrée, nous appliquons \( \textit{A} \) et \( \textit{B} \) pour produire deux signaux de sortie. Nous calculons ensuite la distance entre ces deux signaux de sortie à l'aide de \( \textit{d} \). Puis, nous mettons à jour la mesure de succès en prenant la valeur max entre la distance actuelle et la mesure de succès précédente.
+
+Une fois que nous avons parcouru tous les signaux audio d'entrée, nous comparons la mesure de succès obtenue à notre seuil maximal \( \textit{seuil\_max} \). Si la mesure de succès est inférieure à ce seuil, on considère que le test est passé correctement.
+
+
+\par
+
 
 
 
@@ -61,6 +80,7 @@ Idéalement, nous pouvons consacrer 2 semaines sur l'implémentations des tests 
 
 \subsection*{Calendrier Visuel}
 
+
 \begin{tikzpicture}
 %Mois
 \draw[fill=yellow] (0,0) rectangle (2,0.5) node[pos=.5] {Décembre};
@@ -82,11 +102,11 @@ Idéalement, nous pouvons consacrer 2 semaines sur l'implémentations des tests 
 \end{tikzpicture}
 
 \section*{Problèmes rencontrés}
-Nous avons d'abord mit du temps a trouver un sujet accepté, mais aussi après dans la réalisation du projet jusqu'a maintenant. Les difficultés majeures que nous avons rencontrées sont 
+Nous avons d'abord mit du temps a trouver un sujet accepté, mais aussi après dans la réalisation du projet jusqu'a maintenant. Les difficultés majeures que nous avons rencontrées sont :
 \begin{itemize}
-   \item l'utilisation de rust que nous avons tout les deux du apprendre sur le tas
-  \item la compréhension théorique des algorithmes et technologies que nous utilisons car c'était notre premier projet dans le domaine du traitement audio
-  \item le choix des algorithmes a utiliser car en rapport avec le point précédent, les différencens peuvent être nuancées et dure a saisir sans en connaître les tenants et aboutissants
+   \item L'utilisation de Rust, que nous avons tout les deux du apprendre sur le tas
+  \item La compréhension théorique des algorithmes et technologies que nous utilisons car c'était notre premier projet dans le domaine du traitement audio
+  \item Le choix des algorithmes a utiliser car en rapport avec le point précédent, les différences peuvent être nuancées et dure a saisir sans en connaître les tenants et aboutissants
 \end{itemize}
 
 \end{document}
