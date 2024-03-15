@@ -14,7 +14,7 @@
 
 \section{Introduction}
 
-Notre projet consiste à réaliser un auto tuner, c'est à dire un programme qui recoit en entrée un fichier audio d'une voix, et ressort en sortie une version de cette audio dont les notes sont modifié selon les désirs de l'utilisateur, sans modifier le reste de l'audio. Grossièrement, nous pouvons diviser cela en 2 : 
+Notre projet consiste à réaliser un autotuneur, c'est-à-dire un programme qui reçoit en entrée un fichier audio d'une voix, et ressort en sortie une version de cet audio dont les notes sont modifiées selon les désirs de l'utilisateur, sans altérer le reste de l'audio. Grossièrement, nous pouvons diviser cela en deux :
 \begin{itemize}
   \item Pitch Tracking : récupérer les différentes notes de l'audio
   \item Pitch Correction : changer les notes vers les hauteurs souhaitées
@@ -47,29 +47,26 @@ Une fois que nous avons parcouru tous les signaux audio d'entrée, nous comparon
 
 \section{Implémentation}
 
-Nous réalisons ce projets en \textbf{Rust}, en nous appuyant sur \textbf{l'algorithme FFT (Fast Fourier transform)} pour représenter l'audio sous une forme de données pragmatiques pour notre projet, une méthode très courante pour le traitement de signal. 
-Nous utilisons également d'autres algorithmes basés sur cette technologie tel que l'algorithme PIN pour la section pitch correction.
+Nous réalisons ce projet en \textbf{Rust}, en nous appuyant sur \textbf{l'algorithme FFT (Fast Fourier Transform)} pour représenter l'audio sous une forme de données pragmatiques pour notre projet, une méthode très courante pour le traitement de signal. Nous utilisons également d'autres algorithmes basés sur cette technologie tels que l'algorithme PIN pour la correction de hauteur.
 \par
-En terme de modules ou packages, la strudcture interne du projet est très simple avec un fichier par tâche, a utiliser dans un main.
-Nous utilisons quelques packages de Rust pour certaines tâches auxiliaires au projet tel que la création de l'interface graphique, ou la manipulation/création de fichier midi.
-
+En termes de modules ou packages, la structure interne du projet est très simple, avec un fichier par tâche, à utiliser dans un main. Nous utilisons quelques packages de Rust pour certaines tâches auxiliaires au projet, telles que la création de l'interface graphique, ou la manipulation/création de fichiers MIDI.
 
 \section{Jalons}
 
 \subsection{Tâches à Réaliser}
 
-Nous avons divisé le projet dans sa globalité en 3 grosse tâches, à savoir 
+Nous avons divisé le projet dans sa globalité en trois tâches principales, à savoir 
 \begin{itemize}
-  \item l'implémentation de l'algorithme FFT pour permettre de transformer des fichiers audio en données utilisables
-  \item l'implémentation du pitch tracking
-  \item l'implémentation de la pitch correction
+  \item L'implémentation de l'algorithme FFT pour permettre de transformer des fichiers audio en données utilisables
+  \item L'implémentation du pitch tracking
+  \item L'implémentation de la pitch correction
 \end{itemize}
 
-Viennent ensuite s'ajouter des tâches auxiliaires telles que la mise en place de tests, la création de l'interface graphique etc...
+Viennent ensuite s'ajouter des tâches auxiliaires telles que la mise en place de tests, ou encore la création de l'interface graphique.
 
 \subsection{Tâches Terminées}
 
-Les deux première tâches parmi celles énumérées au dessus ont été réalisés, ainsi que quelques tâches auxiliaires. Des tests ont été mit en place pour la partie FFT, et l'interface utilisateur a déjà été conçue.
+Les deux première tâches parmis celles énumérées au dessus ont été réalisés, ainsi que quelques tâches auxiliaires. Des tests ont été mis en place pour la partie FFT, et l'interface utilisateur a déjà été conçue.
 
 \subsection{Organisation Temporelle}
 
@@ -91,7 +88,7 @@ Idéalement, nous pouvons consacrer 2 semaines sur l'implémentations des tests 
 
 %Tâches
 \draw[thick] (0,-0.5) rectangle (1.5, -1.5) node[pos=.5, text width=1.8cm, align=center] {Choix des algos};
-\draw[thick] (1,-2) rectangle (4, -3) node[pos=.5, text width=1.8cm, align=center] {Implémentation FFT};
+\draw[thick] (1,-2) rectangle (4, -3) node[pos=.5, text width=1.8cm, align=center] {Algo FFT};
 \draw[thick] (1,-3.5) rectangle (4, -4.5) node[pos=.5, text width=1.8cm, align=center] {Interface graphique};
 \draw[thick] (3.5,-0.5) rectangle (6.5, -1.5) node[pos=.5, text width=1.8cm, align=center] {Tests FFT};
 \draw[thick] (4,-2) rectangle (8, -3) node[pos=.5, text width=1.8cm, align=center] {Pitch Tracking};
@@ -102,11 +99,13 @@ Idéalement, nous pouvons consacrer 2 semaines sur l'implémentations des tests 
 \end{tikzpicture}
 
 \section*{Problèmes rencontrés}
-Nous avons d'abord mit du temps a trouver un sujet accepté, mais aussi après dans la réalisation du projet jusqu'a maintenant. Les difficultés majeures que nous avons rencontrées sont :
+Nous avons d'abord mis du temps a trouver un sujet accepté, mais aussi après dans la réalisation du projet jusqu'a maintenant. Les difficultés majeures que nous avons rencontrées sont :
 \begin{itemize}
-   \item L'utilisation de Rust, que nous avons tout les deux du apprendre sur le tas
-  \item La compréhension théorique des algorithmes et technologies que nous utilisons car c'était notre premier projet dans le domaine du traitement audio
-  \item Le choix des algorithmes a utiliser car en rapport avec le point précédent, les différences peuvent être nuancées et dure a saisir sans en connaître les tenants et aboutissants
+  \item L'utilisation de Rust, que nous avons tout les deux dû apprendre pour le cadre de ce projet. Cela à rajouter d'avantage de retard pour le projet, il était assez difficile de commencer le projet
+  sans avoir un minimum de base solide pour bien débuter.
+  \item La compréhension théorique des algorithmes et technologies que nous utilisons, c'était notre premier projet dans le domaine du traitement audio.
+  \item Le choix des algorithmes à utiliser. En rapport avec le point précédent, les différences peuvent être nuancées et dure a saisir sans en connaître les tenants et aboutissants. Certains algorithmes sont
+  plus ou moins détailler, certains peuvent être même plutôt récent, et sans s'y connaître dans le domaine, on peut vite se retrouver perdu.
 \end{itemize}
 
 \end{document}
