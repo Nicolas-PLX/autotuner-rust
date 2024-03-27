@@ -149,5 +149,3 @@ Implémentation des algorithmes pour la génération de paroles et tests.
 Entraînement du modèle, interface utilisateurs.
 ### Jalon 5 - Mai : 
 Ajustements finaux, documentations.
-
-
