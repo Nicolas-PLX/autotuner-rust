@@ -1,3 +1,5 @@
+
+
 ## 17/11/2023
 
 TODO
@@ -63,8 +65,20 @@ Schneier absent
 
 ### À faire
 
-- continuer objectifs donnés le 14/2
-- préparer une démo (pour toutes les séances de suivi)
-- réviser calendrier
-- supprimer fichiers de projet obsolètes
-- regarder couverture des tests
+- [ ] continuer objectifs donnés le 14/2
+- [ ] réviser calendrier
+- [ ] préparer une démo (pour toutes les séances de suivi)
+- [ ] supprimer fichiers de projet obsolètes
+- [ ] regarder couverture des tests
+
+
+# 27/03/2024 Bernardi
+
+DONE
+
+- Not clear, the code does not even compile.
+  The error in the code is a triviality that has not even been corrected.
+
+TODO
+
+- Voir les objectifs pour le 27/03/2024
