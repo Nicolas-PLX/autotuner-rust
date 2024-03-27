@@ -1,10 +1,8 @@
-# Génération automatique de paroles de chansons à l'aide d'algorithme d'intelligence artificielle  
-
+# Création d'un logiciel d'autotune
 ## À quel problème répond-il ?  
 
-Notre projet répond au problème de la création automatisée de paroles de chansons
-dans différent style musicaux, en utilisant des algorithmes et de la modélisation
-de données.
+Ce projet vise à résoudre le problème de correction de la hauteur des notes dans des enregistrements audio, permettant à l'utilisateur d'améliorer leur performances musicales.
+L'utilisateur fournit un enregistrement de sa voix en acapella, et le logiciel produit une version de l'enregistrement en corrigeant la justesse du chant de l'utilisateur, pour une tonalité précise (telle qu'une gamme définie à l'avance).
 
 ## Objectifs  
 
@@ -22,40 +20,30 @@ Concevoir et implémenter un logiciel Auto-Tune capable de détecter et de corri
 - Permettre à l'utilisateur d'expérimenter avec différents réglages tels que la vitesse et la justesse de la correction pour avoir un aspect créatif
 - Optimiser les performances pour une utilisation en temps réel
 
-### Objectifs intermédiaires :  
+## Testabilité
+Le projet peut être testé en utilisant les protocoles suivants :
+- Donner des audios dont on connait déjà les notes (sous forme de midi par exemple) et voir si nos algorithmes de pitch tracking arrivent à précisémment retrouver ces notes
+- Utiliser nos algorithmes de pitch tracking sur l'audio produit par le logiciel pour s'assurer que les notes produites sont bien les notes voulues
 
-Pour atteindre l'objectif principal, nous allons collecter une base de données de paroles de chansons. 
-Nous prétraiterons ces données en les classifiants par des paramètres tels que style musical, 
-la longueur etc... en les nettoyant, en extrayant des informations sur les rimes 
-et les métriques, et en les structurant en ensembles de données adaptés à l'apprentissage 
-des chaînes de Markov. Nous utiliserons la librairie "pandas" de python pour traiter la base
-de données.
+ On peut automatiser ce genre de testes pour CI/CD.
 
-De plus, Nous pourrions explorer plusieurs autres idées (en plus des chaînes de Markov)
-pour notre projet, déjà un modèles de génération de texte, mais aussi des réseaux de neurones 
-récurrents, ou encore d'autres méthodes.
+- On pourrait également réaliser des tests manuels sur les audios produits pour s'assurer que l'audio reste compréhensible et similaire a l'enregistrement de base.
 
-### Objectifs supplémentaires :  
+## Originalité du Projet
 
-Si le projet progresse correctement, nous pourrions déjà ajouter des paramètres supplémentaires 
-pour la génération de paroles de chansons (en plus du style de musique), comme le style
-de rimes, le nombre de vers, la taille des vers, le rythme. Nous pourrions éventuellement rajouter la 
-personnalisation des paroles,en fonction des préférences que l'utilisateur fournira au programme. 
-Nous pourrions rajouter aussi une fonctionnalité d'évaluation de la qualité des paroles 
-générées par le programme, pour ensuite amélioré notre programme à l'aide de ces évaluations. 
+Ce projet se distingue par sa création complète d'un logiciel Auto-Tune, développant des algorithmes personnalisés plutôt que de s'appuyer sur des API existantes. L'originalité réside dans la conception et l'implémentation d'un traitement vocal avancé, adapté aux besoins spécifiques du projet.
 
-## Aspect Technique :  
+## Pourquoi ce n’est pas qu’un collage d’API ?
 
-### Création de chaînes :  
+Contrairement à l'utilisation d'API existantes, ce projet vise à offrir une solution sur mesure en développant des algorithmes spécifiques de correction de hauteur. Cela permet un contrôle plus fin et une adaptation aux exigences particulières de l'application.
 
-Les chaînes de Markov seront créées en analysant la structure et la séquence des mots 
-dans les paroles de chansons. Pour ce faire, nous allons diviser chaque chanson en 
-séquences de mots, et observer les transitions entre ces mots. Les transitions 
-seront utilisées pour former les probabilités de transition entre les mots, créant ainsi 
-la matrice de transition de la chaîne de Markov. 
+## Calendrier/Jalons
 
-### Caractérisation de l'état de la chaîne :
+1. **Décembre :** Création du modèle de données
+  
+2. **Janvier :** Réalisation de la partie pitch tracking
 
+<<<<<<< HEAD
 Chaque état de la chaîne représentera un mot spécifique, et le passé sera caractérisé 
 par la séquence des mots précédents menant à l'état actuel. Ainsi, à un moment donné, 
 l'état actuel de la chaîne serait un mot, et le passé serait la séquence de mots qui a 
@@ -147,3 +135,10 @@ Implémentation des algorithmes pour la génération de paroles et tests.
 Entraînement du modèle, interface utilisateurs.
 ### Jalon 5 - Mai : 
 Ajustements finaux, documentations.
+=======
+3. **Février :** Réalisation de la partie pitch correction
+
+4. **Mars :** Création de l'interface utilisateur et mise en place des tests.
+
+5. **Avril :** Optimisation des performances et exploration des objectifs supplémentaires.
+>>>>>>> d8e2a3a4d8b83e5a391804500a0f0a4cb738f8d5
