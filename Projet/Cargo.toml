@@ -8,3 +8,9 @@ edition = "2021"
 [dependencies]
 druid = { git = "https://github.com/linebender/druid.git" }
 rodio = "0.17.3"
+
+[[test]]
+name = "test_fft"
+path = "tests/fft_test.rs"
+harness = false
+args = ["../resource/3s.wav"]

@@ -45,6 +45,19 @@ impl Complex {
     }
 }
 
+use std::ops::Div;
+
+impl Div<f64> for &Complex {
+    type Output = Complex;
+
+    fn div(self, rhs: f64) -> Complex {
+        Complex {
+            re: self.re / rhs,
+            im: self.im / rhs,
+        }
+    }
+}
+
 
 
 pub struct WavReader { // Struct pour stocker le résultat de la lecture du fichier wav
@@ -62,7 +75,7 @@ impl WavReader {
         let mut reader = BufReader::new(file);
 
         // On lis l'en-tête du fichier WAV
-        let mut header = [0u8; 44]; //44 correspond à la taille standard d'un entête WAv TODO : a vérifié
+        let mut header = [0u8; 44]; //44 correspond à la taille standard d'un entête Wav
         reader.read_exact(&mut header)?;
 
         // Récupérer les paramètres du fichier WAV à partir de l'en-tête
@@ -140,7 +153,7 @@ impl WavReader {
     result
     }
 
-
+    
     pub fn ifft(&self) -> Vec<i16> {
         let complex = Self::samples_to_complex(&self.samples);
         let n = complex.len();
@@ -155,6 +168,41 @@ impl WavReader {
         let ifft_output = Self::complex_to_samples(&ifft);
 
         ifft_output
+    }
+    
+
+    
+    fn ifft_rec(input: &[Complex]) -> Vec<Complex> {
+        let n = input.len();
+        if n == 1 {
+            return input.to_vec();
+        }
+
+        let (mut even, mut odd): (Vec<Complex>, Vec<Complex>) = input.iter().enumerate().fold(
+            (Vec::with_capacity(n / 2), Vec::with_capacity(n / 2)),
+            |(mut even, mut odd), (i, x)| {
+                if i % 2 == 0 {
+                    even.push(*x);
+                } else {
+                    odd.push(*x);
+                }
+                (even, odd)
+            },
+        );
+
+        let even = Self::ifft_rec(&even);
+        let odd = Self::ifft_rec(&odd);
+
+        let mut output = vec![Complex::new(0.0, 0.0); n];
+
+        for k in 0..n / 2 {
+            let t = -2.0 * std::f64::consts::PI * k as f64 / n as f64;
+            let w = Complex::new(t.cos(), t.sin());
+            output[k] = even[k].add(w.mul(odd[k]));// + w * odd[k];
+            output[k + n / 2] = even[k].sub(w.mul(odd[k]));// - w * odd[k];
+        }
+
+        output.iter().map(|x| x / n as f64).collect()
     }
 
     
